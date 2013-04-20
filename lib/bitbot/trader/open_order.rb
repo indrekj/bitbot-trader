@@ -7,7 +7,7 @@ module Bitbot
     class OpenOrder
       include Virtus::ValueObject
 
-      attribute :id,     Integer
+      attribute :id,     String
       attribute :price,  Price
       attribute :amount, BigDecimal
     end

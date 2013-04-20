@@ -3,18 +3,18 @@ require "virtus"
 module Bitbot
   module Trader
     module Providers
-      # Provider for Bitstamp API
+      # Provider for MtGox API (version 2)
       #
-      # @see https://www.bitstamp.net/api/
+      # @see https://en.bitcoin.it/wiki/MtGox/API/HTTP/v2
       #
-      class Bitstamp
+      class MtGox
         include ApiMethods
 
-        # Initializes Bitstamp provider
+        # Initializes MtGox provider
         #
         # @param [Hash] options
-        # @option options [String] :username
-        # @option options [String] :password
+        # @option options [String] :key
+        # @option options [String] :secret
         #
         # @param [HttpClient] client
         #

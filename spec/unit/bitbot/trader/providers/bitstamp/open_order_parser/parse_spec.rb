@@ -7,7 +7,7 @@ describe Providers::Bitstamp::OpenOrderParser, "#parse" do
   let(:options) { {id: 1, price: 2.34, amount: 32} }
 
   it { should be_a(OpenOrder) }
-  its(:id) { should eq(1) }
+  its(:id) { should eq("1") }
   its(:amount) { should eq(32) }
 
   context "price" do

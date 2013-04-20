@@ -1,9 +1,7 @@
 require "spec_helper"
 
-describe Providers::Bitstamp, "#initialize" do
+describe Providers::MtGox, "#initialize" do
   let(:options)  { mock("options") }
-  let(:username) { "23443" }
-  let(:password) { "TopSecret" }
 
   context "when with custom http client" do
     subject { described_class.new(options, http_client) }

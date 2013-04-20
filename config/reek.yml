@@ -30,10 +30,10 @@ IrresponsibleModule:
 LongParameterList:
   enabled: true
   exclude: []
-  max_params: 2
+  max_params: 3
   overrides:
     initialize:
-      max_params: 3
+      max_params: 5
 LongYieldList:
   enabled: true
   exclude: []
@@ -53,16 +53,16 @@ RepeatedConditional:
 TooManyInstanceVariables:
   enabled: true
   exclude: []
-  max_instance_variables: 3
+  max_instance_variables: 9
 TooManyMethods:
   enabled: true
   exclude: []
-  max_methods: 10
+  max_methods: 25
 TooManyStatements:
   enabled: true
   exclude:
     - each
-  max_statements: 2
+  max_statements: 5
 UncommunicativeMethodName:
   enabled: true
   exclude: []
