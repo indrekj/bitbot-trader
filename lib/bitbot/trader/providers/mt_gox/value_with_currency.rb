@@ -16,8 +16,9 @@ module Bitbot
           #
           # @api private
           #
-          def self.parse(data, decimal_point)
+          def self.parse(data)
             value, currency = data.values_at("value_int", "currency")
+            decimal_point = currency == "BTC" ? 8 : 5
             {value: BigDecimal(value) / (10 ** decimal_point), currency: currency}
           end
         end

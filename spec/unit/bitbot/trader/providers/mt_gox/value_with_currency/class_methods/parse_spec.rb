@@ -1,10 +1,19 @@
 require "spec_helper"
 
 describe Providers::MtGox::ValueWithCurrency, ".parse" do
-  subject { described_class.parse(data, 3) }
+  subject { described_class.parse(data) }
 
-  let(:data) { {"value_int" => 12345, "currency" => "EUR"} }
+  context "when non-BTC currency" do
+    let(:data) { {"value_int" => 123456789, "currency" => "EUR"} }
 
-  its([:value]) { should be_big_decimal(12.345) }
-  its([:currency]) { should eq("EUR") }
+    its([:value]) { should be_big_decimal(1234.56789) }
+    its([:currency]) { should eq("EUR") }
+  end
+
+  context "when BTC currency" do
+    let(:data) { {"value_int" => 123456789, "currency" => "BTC"} }
+
+    its([:value]) { should be_big_decimal(1.23456789) }
+    its([:currency]) { should eq("BTC") }
+  end
 end

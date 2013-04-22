@@ -100,7 +100,6 @@ UnusedParameters:
 UtilityFunction:
   enabled: true
   exclude: [
-    "Bitbot::Trader::Providers::MtGox::AmountWriter",
-    "Bitbot::Trader::Providers::MtGox::PriceWriter"
+    "Bitbot::Trader::Providers::MtGox::ValueWithCurrencyWriter#coerce"
   ]
   max_helper_calls: 0

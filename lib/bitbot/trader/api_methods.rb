@@ -15,6 +15,19 @@ module Bitbot
       def open_orders
         self.class::OpenOrdersRequest.new(client).call
       end
+
+      # Fetches user's account info
+      #
+      # @example
+      #   provider.account #=> <Account>
+      #
+      # @return [Account]
+      #
+      # @api public
+      #
+      def account
+        self.class::AccountInfoRequest.new(client).call
+      end
     end
   end
 end

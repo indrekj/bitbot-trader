@@ -10,8 +10,8 @@ module Bitbot
           attribute :oid,              String
           attribute :currency,         String
           attribute :type,             String
-          attribute :effective_amount, Hash,  writer_class: AmountWriter
-          attribute :price,            Price, writer_class: PriceWriter
+          attribute :effective_amount, Amount, writer_class: ValueWithCurrencyWriter
+          attribute :price,            Price,  writer_class: ValueWithCurrencyWriter
           attribute :type,             String
 
           # Makes raw open order hash into OpenOrder object

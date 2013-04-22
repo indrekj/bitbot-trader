@@ -2,9 +2,9 @@ module Bitbot
   module Trader
     module Providers
       class MtGox
-        # POST request to /open_orders/
+        # POST request to /money/orders
         #
-        # @see https://www.bitstamp.net/api/
+        # @see https://en.bitcoin.it/wiki/MtGox/API/HTTP/v1
         #
         class OpenOrdersRequest < Request
           # Fetches user's open orders
