@@ -14,7 +14,7 @@ module Bitbot
           # @api private
           #
           def call
-            @client.post("money/orders")["data"].map { |raw_order|
+            client.post("money/orders")["data"].map { |raw_order|
               OpenOrderParser.new(raw_order).parse
             }
           end

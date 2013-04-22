@@ -5,6 +5,14 @@ module Bitbot
     # @abstract
     #
     class Request
+      # Object that communicates with external API
+      #
+      # @return [Object]
+      #
+      # @api private
+      #
+      attr_reader :client
+
       # Initializes request object
       #
       # @param [Object] client

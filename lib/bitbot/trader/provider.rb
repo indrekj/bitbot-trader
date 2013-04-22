@@ -9,7 +9,7 @@ module Bitbot
 
       # Object that communicates with external API
       #
-      # @return [HttpClient]
+      # @return [Object]
       #
       # @api private
       #
