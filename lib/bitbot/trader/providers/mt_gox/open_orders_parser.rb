@@ -5,7 +5,7 @@ module Bitbot
         # Parses raw open orders
         #
         class OpenOrderParser
-          include Virtus::ValueObject
+          include Virtus
 
           attribute :oid,              String
           attribute :currency,         String

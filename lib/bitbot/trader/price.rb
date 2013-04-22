@@ -6,7 +6,7 @@ module Bitbot
     # e.g 5.6 USD
     #
     class Price
-      include Virtus::ValueObject
+      include Virtus
 
       attribute :value, BigDecimal
       attribute :currency, String
