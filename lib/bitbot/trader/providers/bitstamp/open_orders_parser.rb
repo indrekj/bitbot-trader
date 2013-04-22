@@ -10,6 +10,7 @@ module Bitbot
           attribute :id,     Integer
           attribute :price,  BigDecimal
           attribute :amount, BigDecimal
+          attribute :type,   Integer
 
           # Makes raw open order hash into OpenOrder object
           #
@@ -21,7 +22,8 @@ module Bitbot
             OpenOrder.new(
               id: id,
               price: {value: price, currency: "USD"},
-              amount: amount
+              amount: {value: amount, currency: "BTC"},
+              bid: type == 0
             )
           end
         end

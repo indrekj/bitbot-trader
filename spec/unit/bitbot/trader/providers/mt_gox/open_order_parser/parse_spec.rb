@@ -27,8 +27,16 @@ describe Providers::MtGox::OpenOrderParser, "#parse" do
     }
   }
 
+  it { should be_a(OpenOrder) }
+  it { should be_bid }
   its(:id) { should eq("7c6d2237-52fb-4af4-b6ec-75e42f50c331") }
-  its(:amount) { should eq(35) }
+
+  context "amount" do
+    subject { order.amount }
+    it { should be_a(Amount) }
+    its(:value) { should eq(35) }
+    its(:currency) { should eq("BTC") }
+  end
 
   context "price" do
     subject { order.price }

@@ -4,10 +4,10 @@ module Bitbot
   module Trader
     module Providers
       class MtGox
-        # Coerces price objects
+        # Coerces amount objects
         #
-        class PriceWriter < Virtus::Attribute::Writer::Coercible
-          # Parses price or volume
+        class AmountWriter < Virtus::Attribute::Writer::Coercible
+          # Parses amount
           #
           # @param [Hash] data
           #
@@ -16,7 +16,7 @@ module Bitbot
           # @api private
           #
           def coerce(data)
-            ValueWithCurrency.parse(data, 5)
+            ValueWithCurrency.parse(data, 8)
           end
         end
       end

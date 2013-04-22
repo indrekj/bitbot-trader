@@ -17,7 +17,10 @@ describe Providers::MtGox, "#open_orders" do
 
     order = open_orders.first
     expect(order.id).to eq("7c6d2237-52fb-4af4-b6ec-75e42f50c331")
-    expect(order.amount).to eq(35)
+
+    amount = order.amount
+    expect(amount.value).to eq(35)
+    expect(amount.currency).to eq("BTC")
 
     price = order.price
     expect(price.value).to eq(30.1)

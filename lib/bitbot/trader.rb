@@ -5,6 +5,7 @@ module Bitbot
   end
 end
 
+require "bitbot/trader/amount"
 require "bitbot/trader/price"
 require "bitbot/trader/open_order"
 
@@ -22,6 +23,8 @@ require "bitbot/trader/providers/bitstamp/open_orders_parser"
 require "bitbot/trader/providers/mt_gox"
 require "bitbot/trader/providers/mt_gox/http_client"
 require "bitbot/trader/providers/mt_gox/http_client/hmac_middleware"
+require "bitbot/trader/providers/mt_gox/value_with_currency"
+require "bitbot/trader/providers/mt_gox/amount_writer"
 require "bitbot/trader/providers/mt_gox/price_writer"
 require "bitbot/trader/providers/mt_gox/open_orders_request"
 require "bitbot/trader/providers/mt_gox/open_orders_parser"

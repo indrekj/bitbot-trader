@@ -16,10 +16,13 @@ describe Providers::Bitstamp, "#open_orders" do
 
     order = open_orders.first
     expect(order.id).to eq("2826860")
-    expect(order.amount).to eq(10)
+
+    amount = order.amount
+    expect(amount.value).to be_big_decimal(10)
+    expect(amount.currency).to eq("BTC")
 
     price = order.price
-    expect(price.value).to eq(20.10)
+    expect(price.value).to be_big_decimal(20.10)
     expect(price.currency).to eq("USD")
   end
 end

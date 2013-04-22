@@ -10,8 +10,9 @@ module Bitbot
           attribute :oid,              String
           attribute :currency,         String
           attribute :type,             String
-          attribute :effective_amount, Hash
+          attribute :effective_amount, Hash,  writer_class: AmountWriter
           attribute :price,            Price, writer_class: PriceWriter
+          attribute :type,             String
 
           # Makes raw open order hash into OpenOrder object
           #
@@ -23,7 +24,8 @@ module Bitbot
             OpenOrder.new(
               id: oid,
               price: price,
-              amount: BigDecimal(effective_amount["value_int"]) / 1_0000_0000
+              amount: effective_amount,
+              bid: type == "bid"
             )
           end
         end

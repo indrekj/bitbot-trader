@@ -99,5 +99,8 @@ UnusedParameters:
   exclude: []
 UtilityFunction:
   enabled: true
-  exclude: []
+  exclude: [
+    "Bitbot::Trader::Providers::MtGox::AmountWriter",
+    "Bitbot::Trader::Providers::MtGox::PriceWriter"
+  ]
   max_helper_calls: 0

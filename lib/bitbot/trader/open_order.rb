@@ -9,7 +9,8 @@ module Bitbot
 
       attribute :id,     String
       attribute :price,  Price
-      attribute :amount, BigDecimal
+      attribute :amount, Amount
+      attribute :bid,    Boolean
     end
   end
 end
