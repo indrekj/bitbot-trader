@@ -12,10 +12,7 @@ if ENV["COVERAGE"] == "true"
   end
 end
 
-require "devtools/spec_helper"
 require "bitbot/trader"
 
-Dir[File.dirname(__FILE__) + "/shared/**/*.rb"].each {|f| require f}
-Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
-
 include Bitbot::Trader
+require "devtools/spec_helper"
