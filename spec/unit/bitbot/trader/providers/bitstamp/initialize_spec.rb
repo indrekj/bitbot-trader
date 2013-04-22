@@ -11,6 +11,7 @@ describe Providers::Bitstamp, "#initialize" do
     let(:http_client) { mock("HttpClient") }
 
     it { should be_a(described_class) }
+    its(:client) { should be(http_client) }
   end
 
   context "when with default http client class" do

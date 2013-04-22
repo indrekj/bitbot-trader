@@ -1,9 +1,5 @@
 def provider_mock
-  Class.new {
-    def initialize(client)
-      @client = client
-    end
-
+  Struct.new(:client) {
     include ApiMethods
   }
 end

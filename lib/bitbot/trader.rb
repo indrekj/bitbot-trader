@@ -10,6 +10,7 @@ require "bitbot/trader/open_order"
 
 require "bitbot/trader/request"
 require "bitbot/trader/api_methods"
+require "bitbot/trader/provider"
 
 require "bitbot/trader/utils/nonce_generator"
 

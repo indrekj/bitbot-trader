@@ -7,9 +7,7 @@ module Bitbot
       #
       # @see https://en.bitcoin.it/wiki/MtGox/API/HTTP/v2
       #
-      class MtGox
-        include ApiMethods
-
+      class MtGox < Provider
         # Initializes MtGox provider
         #
         # @param [Hash] options

@@ -13,7 +13,7 @@ module Bitbot
       # @api public
       #
       def open_orders
-        self.class::OpenOrdersRequest.new(@client).call
+        self.class::OpenOrdersRequest.new(client).call
       end
     end
   end

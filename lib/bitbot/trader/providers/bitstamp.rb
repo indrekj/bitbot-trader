@@ -7,9 +7,7 @@ module Bitbot
       #
       # @see https://www.bitstamp.net/api/
       #
-      class Bitstamp
-        include ApiMethods
-
+      class Bitstamp < Provider
         # Initializes Bitstamp provider
         #
         # @param [Hash] options
