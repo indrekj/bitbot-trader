@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Providers::Bitstamp::HttpClient, "#post" do
   let(:client)     { described_class.new(connection, "username", "password") }
-  let(:connection) { mock("connection") }
+  let(:connection) { double("connection") }
   let(:path)       { "some_action" }
 
   context "with default options" do
@@ -13,7 +13,7 @@ describe Providers::Bitstamp::HttpClient, "#post" do
     before do
       connection.should_receive(:post).
         with("some_action/", {user: "username", password: "password"}).
-        and_return(mock(body: '{"result": "yey"}'))
+        and_return(double(body: '{"result": "yey"}'))
     end
 
     it { should eq({"result" => "yey"}) }
@@ -29,7 +29,7 @@ describe Providers::Bitstamp::HttpClient, "#post" do
         with("some_action/", {
           user: "username", password: "password", param: "value"
         }).
-        and_return(mock(body: '{"result": "yey"}'))
+        and_return(double(body: '{"result": "yey"}'))
     end
 
     it { should eq({"result" => "yey"}) }

@@ -6,7 +6,7 @@ module Bitbot
     # e.g 5.6 USD
     #
     class Amount
-      include Virtus
+      include Virtus.model
 
       attribute :value, BigDecimal
       attribute :currency, String

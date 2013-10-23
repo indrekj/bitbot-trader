@@ -5,7 +5,7 @@ module Bitbot
         # Parses raw open orders
         #
         class OpenOrderParser
-          include Virtus
+          include Virtus.model
 
           attribute :id,     Integer
           attribute :price,  BigDecimal

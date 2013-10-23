@@ -3,11 +3,11 @@ require "spec_helper"
 describe ApiMethods, "#account" do
   subject { object.account }
 
-  let(:object)        { provider_mock.new(client) }
-  let(:client)        { mock("client") }
+  let(:object)        { provider_double.new(client) }
+  let(:client)        { double("client") }
 
   let(:request_class) { Class.new }
-  let(:request)       { mock("request") }
+  let(:request)       { double("request") }
 
   before do
     object.class.const_set("AccountInfoRequest", request_class)

@@ -3,9 +3,9 @@ require "spec_helper"
 describe Providers::MtGox::HttpClient::HmacMiddleware, "#call" do
   subject { described_class.new(app, options).call(env) }
 
-  let(:app)     { mock }
+  let(:app)     { double }
   let(:options) { {key: "KEY", secret: "c2VjcmV0" } }
-  let(:env)     { mock }
+  let(:env)     { double }
 
   let(:headers) { {} }
   let(:path)    { "money/orders" }

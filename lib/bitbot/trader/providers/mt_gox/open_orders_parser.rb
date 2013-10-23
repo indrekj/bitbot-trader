@@ -5,13 +5,13 @@ module Bitbot
         # Parses raw open orders
         #
         class OpenOrderParser
-          include Virtus
+          include Virtus.model
 
           attribute :oid,              String
           attribute :currency,         String
           attribute :type,             String
-          attribute :effective_amount, Amount, writer_class: ValueWithCurrencyWriter
-          attribute :price,            Price,  writer_class: ValueWithCurrencyWriter
+          attribute :effective_amount, Amount, coercer: ValueWithCurrencyCoercer
+          attribute :price,            Price,  coercer: ValueWithCurrencyCoercer
           attribute :type,             String
 
           # Makes raw open order hash into OpenOrder object

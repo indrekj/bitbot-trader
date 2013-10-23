@@ -20,7 +20,7 @@ describe Providers::MtGox::HttpClient, ".make_connection" do
 
     it "has HmacMiddleware with correct params" do
       connection.builder.handlers.delete(subject[0])
-      hmac_middleware = connection.builder.to_app(mock)
+      hmac_middleware = connection.builder.to_app(double)
       expect(hmac_middleware.key).to eq("key")
       expect(hmac_middleware.secret).to eq("secret")
     end

@@ -5,7 +5,7 @@ module Bitbot
     # User account info
     #
     class Account
-      include Virtus
+      include Virtus.model
 
       attribute :fee, Float
       attribute :wallets, Array[Wallet]

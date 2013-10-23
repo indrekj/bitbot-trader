@@ -7,7 +7,7 @@ describe Providers::MtGox::OpenOrdersRequest, "#call" do
   let(:client)   { HttpRequestMock.new }
 
   let(:raw_open_orders) { {"data" => [raw_open_order]} }
-  let(:raw_open_order)  { stub("raw open order") }
+  let(:raw_open_order)  { double("raw open order") }
 
   before do
     client.stub(:post).with("money/orders").and_return(raw_open_orders)
@@ -16,7 +16,7 @@ describe Providers::MtGox::OpenOrdersRequest, "#call" do
   it "parses open orders" do
     Providers::MtGox::OpenOrderParser.should_receive(:new).
       with(raw_open_order).
-      and_return(stub(parse: "result"))
+      and_return(double(parse: "result"))
     expect(subject).to eq(["result"])
   end
 end

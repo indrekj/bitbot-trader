@@ -6,7 +6,7 @@ describe Providers::MtGox, "#open_orders" do
   }
 
   let(:provider) { described_class.new(options, client) }
-  let(:options)  { {key: "mock", secret: "mock"} }
+  let(:options)  { {key: "double", secret: "double"} }
 
   let(:client) { described_class::HttpClient.new(connection) }
   let(:connection) { mock_connection("/money/orders", result) }

@@ -6,7 +6,7 @@ describe Providers::MtGox::HttpClient::HmacMiddleware, ".extract_params" do
   let(:env) { {request_headers: headers, url: url, body: body} }
 
   let(:headers) { {} }
-  let(:url)     { mock(to_s: "https://data.mtgox.com/api/2/money/orders") }
+  let(:url)     { double(to_s: "https://data.mtgox.com/api/2/money/orders") }
   let(:body)    { {} }
 
 

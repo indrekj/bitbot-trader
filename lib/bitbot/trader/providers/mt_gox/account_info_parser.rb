@@ -5,7 +5,7 @@ module Bitbot
         # Parses raw open orders
         #
         class AccountInfoParser
-          include Virtus
+          include Virtus.model
 
           attribute :Trade_Fee, Float
           attribute :Wallets, Hash
@@ -34,8 +34,8 @@ module Bitbot
           # @api private
           #
           def self.parse_wallets(raw_wallets)
-            raw_wallets.map { |_, raw_wallet|
-              ValueWithCurrency.parse(raw_wallet["Balance"])
+            raw_wallets.map { |_key, raw_wallet|
+              ValueWithCurrencyCoercer.call(raw_wallet["Balance"])
             }
           end
         end

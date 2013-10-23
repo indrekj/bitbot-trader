@@ -10,7 +10,7 @@ describe Utils::NonceGenerator, ".generate" do
   context "with custom time_class" do
     subject { described_class.generate(time_class) }
 
-    let(:time_class) { mock(now: Time.utc(2013, 2, 3, 22, 12, 23)) }
+    let(:time_class) { double(now: Time.utc(2013, 2, 3, 22, 12, 23)) }
 
     it { should eql(1359929543) }
   end

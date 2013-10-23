@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe Providers::MtGox::ValueWithCurrency, ".parse" do
-  subject { described_class.parse(data) }
+describe Providers::MtGox::ValueWithCurrencyCoercer, ".call" do
+  subject { described_class.call(data) }
 
   context "when non-BTC currency" do
     let(:data) { {"value_int" => 123456789, "currency" => "EUR"} }

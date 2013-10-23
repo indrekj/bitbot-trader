@@ -7,7 +7,7 @@ describe Providers::Bitstamp, "#open_orders" do
 
   let(:provider) { described_class.new({}, client) }
 
-  let(:client) { described_class::HttpClient.new(connection, "mock", "mock") }
+  let(:client) { described_class::HttpClient.new(connection, "double", "double") }
   let(:connection) { mock_connection("/open_orders/", result) }
 
   it "parses open orders" do

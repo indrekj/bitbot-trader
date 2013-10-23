@@ -5,7 +5,7 @@ module Bitbot
     # User USD/BTC/etc wallet
     #
     class Wallet
-      include Virtus
+      include Virtus.model
 
       attribute :value, BigDecimal
       attribute :currency, String

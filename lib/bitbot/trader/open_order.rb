@@ -5,7 +5,7 @@ module Bitbot
     # Value object for user open order
     #
     class OpenOrder
-      include Virtus
+      include Virtus.model
 
       attribute :id,     String
       attribute :price,  Price

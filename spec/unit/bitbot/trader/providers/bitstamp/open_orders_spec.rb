@@ -4,11 +4,11 @@ describe Providers::Bitstamp, "#open_orders" do
   subject { provider.open_orders }
 
   let(:provider) { described_class.new(options, client) }
-  let(:options)  { { username: "mock", password: "mock" } }
-  let(:client)   { mock.as_null_object }
+  let(:options)  { { username: "double", password: "double" } }
+  let(:client)   { double.as_null_object }
 
-  let(:request)     { stub("request", call: open_orders) }
-  let(:open_orders) { stub("open orders") }
+  let(:request)     { double("request", call: open_orders) }
+  let(:open_orders) { double("open orders") }
 
   before do
     described_class::OpenOrdersRequest.stub(:new).with(client) { request }

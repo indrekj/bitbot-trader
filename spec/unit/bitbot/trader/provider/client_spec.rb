@@ -10,7 +10,7 @@ describe Provider do
       end
     }
   }
-  let(:client) { mock }
+  let(:client) { double }
 
   it { should be(client) }
 end

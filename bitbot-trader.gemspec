@@ -17,7 +17,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  # Add when virtus 0.6 is released
-  #spec.add_dependency "virtus"
+  spec.add_dependency "virtus", "~> 1.0"
   spec.add_dependency "faraday", "~> 0.8"
 end

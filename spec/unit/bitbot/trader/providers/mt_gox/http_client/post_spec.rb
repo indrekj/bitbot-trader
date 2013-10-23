@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe Providers::MtGox::HttpClient, "#post" do
   let(:client)          { described_class.new(connection, nonce_generator) }
-  let(:connection)      { mock("connection") }
-  let(:nonce_generator) { mock(generate: 123) }
+  let(:connection)      { double("connection") }
+  let(:nonce_generator) { double(generate: 123) }
   let(:path)            { "some_action" }
 
   context "with default options" do
@@ -14,7 +14,7 @@ describe Providers::MtGox::HttpClient, "#post" do
     before do
       connection.should_receive(:post).
         with("some_action", {nonce: 123}).
-        and_return(mock(body: '{"result": "yey"}'))
+        and_return(double(body: '{"result": "yey"}'))
     end
 
     it { should eq({"result" => "yey"}) }
@@ -28,7 +28,7 @@ describe Providers::MtGox::HttpClient, "#post" do
     before do
       connection.should_receive(:post).
         with("some_action", {param: "value", nonce: 123}).
-        and_return(mock(body: '{"result": "yey"}'))
+        and_return(double(body: '{"result": "yey"}'))
     end
 
     it { should eq({"result" => "yey"}) }

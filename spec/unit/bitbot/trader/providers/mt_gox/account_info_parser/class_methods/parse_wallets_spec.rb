@@ -6,11 +6,11 @@ describe Providers::MtGox::AccountInfoParser, ".parse_wallets" do
   let(:raw_wallets) {
     {"EUR" => {"Balance" => balance}}
   }
-  let(:balance) { mock }
+  let(:balance) { double }
 
   it "delegates each wallet balance to ValueWithCurrency" do
-    Providers::MtGox::ValueWithCurrency.
-      should_receive(:parse).
+    Providers::MtGox::ValueWithCurrencyCoercer.
+      should_receive(:call).
       with(balance)
     subject
   end
