@@ -38,6 +38,14 @@ module Bitbot
             Faraday.new(url: HOST)
           end
 
+          # Return connection
+          #
+          # @return [Object]
+          #
+          # @api private
+          #
+          attr_reader :connection
+
           # API username
           #
           # @return [String]

@@ -45,6 +45,21 @@ module Bitbot
             end
           end
 
+          # Return connection
+          #
+          # @return [Object]
+          #
+          # @api private
+          #
+          attr_reader :connection
+
+          # Return nonce generator
+          #
+          # @return [Object]
+          #
+          # @api private
+          attr_reader :nonce_generator
+
           # Initializes HttpClient object
           #
           # @param [#post] connection
