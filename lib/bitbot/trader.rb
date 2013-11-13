@@ -21,6 +21,8 @@ require "bitbot/trader/providers/bitstamp"
 require "bitbot/trader/providers/bitstamp/http_client"
 require "bitbot/trader/providers/bitstamp/open_orders_request"
 require "bitbot/trader/providers/bitstamp/open_orders_parser"
+require "bitbot/trader/providers/bitstamp/account_info_request"
+require "bitbot/trader/providers/bitstamp/account_info_parser"
 
 require "bitbot/trader/providers/mt_gox"
 require "bitbot/trader/providers/mt_gox/http_client"

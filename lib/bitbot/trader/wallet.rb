@@ -10,6 +10,19 @@ module Bitbot
       attribute :value, BigDecimal
       attribute :currency, String
 
+      # Builds a new wallet
+      #
+      # @example
+      #   Wallet.build("USD", 1.234)
+      #
+      # @return [Wallet]
+      #
+      # @api public
+      #
+      def self.build(currency, value)
+        new(currency: currency, value: value)
+      end
+
       # Shows wallet balance
       #
       # @example
