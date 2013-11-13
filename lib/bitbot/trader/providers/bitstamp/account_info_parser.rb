@@ -4,7 +4,7 @@ module Bitbot
       class Bitstamp
         # Parses raw open orders
         #
-        class AccountInfoParser
+        class AccountInfoParser < Parser
           include Virtus.model
 
           attribute :fee, Float

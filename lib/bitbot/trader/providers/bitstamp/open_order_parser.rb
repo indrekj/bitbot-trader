@@ -4,7 +4,7 @@ module Bitbot
       class Bitstamp
         # Parses raw open orders
         #
-        class OpenOrderParser
+        class OpenOrderParser < Parser
           include Virtus.model
 
           attribute :id,     Integer

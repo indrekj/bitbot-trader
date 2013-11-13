@@ -5,8 +5,6 @@ module Bitbot
     # @abstract
     #
     class Provider
-      include ApiMethods
-
       # Object that communicates with external API
       #
       # @return [Object]

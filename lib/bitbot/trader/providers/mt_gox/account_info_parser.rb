@@ -4,7 +4,7 @@ module Bitbot
       class MtGox
         # Parses raw open orders
         #
-        class AccountInfoParser
+        class AccountInfoParser < Parser
           include Virtus.model
 
           attribute :Trade_Fee, Float

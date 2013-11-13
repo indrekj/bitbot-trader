@@ -23,4 +23,43 @@ describe Providers::MtGox do
       it { should be_a(described_class) }
     end
   end
+
+  let(:provider) { described_class.new({}, client) }
+  let(:client)   { double.as_null_object }
+
+  describe "#open_orders" do
+    subject { provider.open_orders }
+
+    let(:raw_orders) { [double] }
+    let(:parsed_orders) { double }
+
+    before do
+      allow(client).to receive(:post).with("money/orders") { {"data" => raw_orders} }
+      allow(described_class::OpenOrderParser).
+        to receive(:parse_collection).
+        with(raw_orders) { parsed_orders }
+    end
+
+    it "parses requested orders" do
+      expect(provider.open_orders).to eq(parsed_orders)
+    end
+  end
+
+  describe "#account" do
+    subject { provider.account }
+
+    let(:raw_account) { double }
+    let(:parsed_account) { double }
+
+    before do
+      allow(client).to receive(:post).with("money/info") { {"data" => raw_account} }
+      allow(described_class::AccountInfoParser).
+        to receive(:parse).
+        with(raw_account) { parsed_account }
+    end
+
+    it "parses requested account" do
+      expect(provider.account).to eq(parsed_account)
+    end
+  end
 end
