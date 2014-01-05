@@ -10,8 +10,8 @@ puts "Bitstamp account:"
 puts bitstamp.account.inspect
 
 mt_gox = Bitbot::Trader::Providers::MtGox.new(
-  key: ENV["MTGOX_KEY"],
-  secret: ENV["MTGOX_SECRET"]
+  api_key: ENV["MTGOX_KEY"],
+  api_secret: ENV["MTGOX_SECRET"]
 )
 puts "MtGox account:"
 puts mt_gox.account.inspect

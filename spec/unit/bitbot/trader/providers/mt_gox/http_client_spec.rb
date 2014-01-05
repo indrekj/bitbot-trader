@@ -4,7 +4,7 @@ describe Providers::MtGox::HttpClient do
   describe ".build" do
     subject { described_class.build(options) }
 
-    let(:options) { {key: "double", secret: "double"} }
+    let(:options) { {api_key: "double", api_secret: "double"} }
     let(:connection) { double }
 
     before do

@@ -13,18 +13,15 @@ module Bitbot
           # Builds a new HttpClient object
           #
           # @param [Hash] options
-          # @option options [String] :username
-          # @option options [String] :password
+          # @option options [String] :api_key
+          # @option options [String] :api_secret
           #
           # @return [HttpClient]
           #
           # @api private
           #
-          def self.build(options)
-            key = options.fetch(:key)
-            secret = options.fetch(:secret)
-
-            connection = make_connection(key, secret)
+          def self.build(api_key:, api_secret:)
+            connection = make_connection(api_key, api_secret)
             new(connection)
           end
 

@@ -11,8 +11,8 @@ module Bitbot
         # Initializes MtGox provider
         #
         # @param [Hash] options
-        # @option options [String] :key
-        # @option options [String] :secret
+        # @option options [String] :api_key
+        # @option options [String] :api_secret
         #
         # @param [HttpClient] client
         #
