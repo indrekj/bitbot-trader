@@ -83,4 +83,25 @@ describe Providers::Bitstamp do
       should be(parsed_open_order)
     end
   end
+
+  describe "#sell" do
+    subject { provider.sell(amount: amount, price: price) }
+
+    let(:amount) { 0.2 }
+    let(:price)  { 324.5 }
+    let(:raw_open_order) { double }
+    let(:parsed_open_order) { double }
+
+    before do
+      allow(client).to receive(:post).
+        with("sell", {amount: 0.2, price: 324.5}) { raw_open_order }
+      allow(described_class::OpenOrderParser).
+        to receive(:parse).
+        with(raw_open_order) { parsed_open_order }
+    end
+
+    it "parses result" do
+      should be(parsed_open_order)
+    end
+  end
 end

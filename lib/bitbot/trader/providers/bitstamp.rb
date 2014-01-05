@@ -73,7 +73,7 @@ module Bitbot
         # @api public
         #
         def sell(amount:, price:)
-          raise NotImplementedError
+          OpenOrderParser.parse(post("sell", amount: amount, price: price))
         end
 
         private
