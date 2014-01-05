@@ -1,8 +1,9 @@
 require "bitbot/trader"
 
 bitstamp = Bitbot::Trader::Providers::Bitstamp.new(
-  username: ENV["BITSTAMP_USERNAME"],
-  password: ENV["BITSTAMP_PASSWORD"]
+  client_id:  ENV["BITSTAMP_CLIENT_ID"],
+  api_key:    ENV["BITSTAMP_KEY"],
+  api_secret: ENV["BITSTAMP_SECRET"]
 )
 
 puts "Bitstamp open orders:"

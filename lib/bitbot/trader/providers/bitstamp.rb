@@ -50,10 +50,36 @@ module Bitbot
           OpenOrderParser.parse_collection(post("open_orders"))
         end
 
+        # Creates a limit bid order
+        #
+        # @example
+        #   provider.buy(amount: 10, price: 298)
+        #
+        # @return [OpenOrder]
+        #
+        # @api public
+        #
+        def buy(amount:, price:)
+          OpenOrderParser.parse(post("buy", amount: amount, price: price))
+        end
+
+        # Creates a limit ask order
+        #
+        # @example
+        #   provider.sell(amount: 2, price: 1298)
+        #
+        # @return [OpenOrder]
+        #
+        # @api public
+        #
+        def sell(amount:, price:)
+          raise NotImplementedError
+        end
+
         private
 
-        def post(path)
-          @client.post(path)
+        def post(path, opts = {})
+          @client.post(path, opts)
         end
       end
     end

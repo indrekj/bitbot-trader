@@ -7,7 +7,7 @@ describe Providers::Bitstamp, "#account" do
 
   let(:provider) { described_class.new({}, client) }
 
-  let(:client) { described_class::HttpClient.new(connection, "double", "double") }
+  let(:client) { make_client(connection) }
   let(:connection) { mock_connection("/balance/", result) }
 
   it "parses account info" do

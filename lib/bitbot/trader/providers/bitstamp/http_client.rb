@@ -1,5 +1,6 @@
 require "faraday"
 require "json"
+require "digest/hmac"
 
 module Bitbot
   module Trader
@@ -13,19 +14,15 @@ module Bitbot
           # Build a new HttpClient object
           #
           # @param [Hash] options
-          # @option options [String] :username
-          # @option options [String] :password
+          #   @see [#initialize]
           #
           # @return [HttpClient]
           #
           # @api private
           #
           def self.build(options)
-            username = options.fetch(:username)
-            password = options.fetch(:password)
-
             connection = make_connection
-            new(connection, username, password)
+            new(connection, options)
           end
 
           # Creates a new faraday connection object
@@ -52,30 +49,37 @@ module Bitbot
           #
           # @api private
           #
-          attr_reader :username
+          attr_reader :client_id
 
-          # API passsword
+          # API key
           #
           # @return [String]
           #
           # @api private
           #
-          attr_reader :password
+          attr_reader :api_key
+
+          # API secret
+          #
+          # @return [String]
+          #
+          # @api private
+          #
+          attr_reader :api_secret
 
           # Initializes HttpClient object
           #
           # @param [#post] connection
-          # @param [String] username
-          # @param [String] password
           #
           # @return [undefined]
           #
           # @api private
           #
-          def initialize(connection, username, password)
+          def initialize(connection, client_id:, api_key:, api_secret:)
             @connection = connection
-            @username   = username
-            @password   = password
+            @client_id  = client_id
+            @api_key    = api_key
+            @api_secret = api_secret
           end
 
           # Sends post request to given path
@@ -90,9 +94,20 @@ module Bitbot
           # @api private
           #
           def post(path, options = {})
-            options    = options.merge(user: @username, password: @password)
-            result     = @connection.post("#{path}/", options).body
+            nonce, signature = generate_signature
+            options = options.merge(key: @api_key, nonce: nonce, signature: signature)
+            result  = @connection.post("#{path}/", options).body
             JSON.parse(result)
+          end
+
+          private
+
+          def generate_signature
+            nonce = Utils::NonceGenerator.generate
+            signature = Digest::HMAC.hexdigest(
+              "#{nonce}#{@client_id}#{@api_key}", @api_secret, Digest::SHA256
+            ).upcase
+            [nonce, signature]
           end
         end
       end

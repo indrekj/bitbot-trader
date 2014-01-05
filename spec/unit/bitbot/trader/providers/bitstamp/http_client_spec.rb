@@ -4,7 +4,7 @@ describe Providers::Bitstamp::HttpClient do
   describe ".build" do
     subject { described_class.build(options) }
 
-    let(:options) { {username: "double", password: "double"} }
+    let(:options) { {client_id: 12, api_key: "key", api_secret: "secret"} }
     let(:connection) { double }
 
     before do
@@ -13,8 +13,9 @@ describe Providers::Bitstamp::HttpClient do
     end
 
     it { should be_a(described_class) }
-    its(:username) { should eq("double") }
-    its(:password) { should eq("double") }
+    its(:client_id)  { should eq(12) }
+    its(:api_key)    { should eq("key") }
+    its(:api_secret) { should eq("secret") }
     its(:connection) { should be(connection) }
   end
 
@@ -38,9 +39,13 @@ describe Providers::Bitstamp::HttpClient do
   end
 
   describe "#post" do
-    let(:client)     { described_class.new(connection, "username", "password") }
+    let(:client)     { described_class.new(connection, client_id: 1, api_key: "key", api_secret: "secret") }
     let(:connection) { double("connection") }
     let(:path)       { "some_action" }
+
+    before do
+      allow(Utils::NonceGenerator).to receive(:generate) { 1388950877 }
+    end
 
     context "with default options" do
       subject { client.post(path) }
@@ -49,7 +54,10 @@ describe Providers::Bitstamp::HttpClient do
 
       before do
         connection.should_receive(:post).
-          with("some_action/", {user: "username", password: "password"}).
+          with("some_action/",
+            key: "key", nonce: 1388950877,
+            signature: "0EE372B2558D2D1CB3C4DD7F48A2BD7ED14D91240940CBD883CBADD28E2997B5"
+          ).
           and_return(double(body: '{"result": "yey"}'))
       end
 
@@ -63,9 +71,10 @@ describe Providers::Bitstamp::HttpClient do
 
       before do
         connection.should_receive(:post).
-          with("some_action/", {
-            user: "username", password: "password", param: "value"
-          }).
+          with("some_action/",
+            param: "value", key: "key", nonce: 1388950877,
+            signature: "0EE372B2558D2D1CB3C4DD7F48A2BD7ED14D91240940CBD883CBADD28E2997B5"
+          ).
           and_return(double(body: '{"result": "yey"}'))
       end
 

@@ -1,10 +1,11 @@
 require "spec_helper"
 
 describe Providers::Bitstamp do
+  let(:provider) { described_class.new({}, client) }
+  let(:client)   { double.as_null_object }
+
   describe "#initialize" do
-    let(:options)  { double("options") }
-    let(:username) { "23443" }
-    let(:password) { "TopSecret" }
+    let(:options) { double("options") }
 
     context "when with custom http client" do
       subject { described_class.new(options, http_client) }
@@ -26,9 +27,6 @@ describe Providers::Bitstamp do
     end
   end
 
-  let(:provider) { described_class.new({}, client) }
-  let(:client)   { double.as_null_object }
-
   describe "#open_orders" do
     subject { provider.open_orders }
 
@@ -36,14 +34,14 @@ describe Providers::Bitstamp do
     let(:parsed_orders) { double }
 
     before do
-      allow(client).to receive(:post).with("open_orders") { raw_orders }
+      allow(client).to receive(:post).with("open_orders", {}) { raw_orders }
       allow(described_class::OpenOrderParser).
         to receive(:parse_collection).
         with(raw_orders) { parsed_orders }
     end
 
     it "parses requested orders" do
-      expect(provider.open_orders).to eq(parsed_orders)
+      should be(parsed_orders)
     end
   end
 
@@ -54,14 +52,35 @@ describe Providers::Bitstamp do
     let(:parsed_account) { double }
 
     before do
-      allow(client).to receive(:post).with("balance") { raw_account }
+      allow(client).to receive(:post).with("balance", {}) { raw_account }
       allow(described_class::AccountInfoParser).
         to receive(:parse).
         with(raw_account) { parsed_account }
     end
 
     it "parses requested account" do
-      expect(provider.account).to eq(parsed_account)
+      should be(parsed_account)
+    end
+  end
+
+  describe "#buy" do
+    subject { provider.buy(amount: amount, price: price) }
+
+    let(:amount) { 0.1 }
+    let(:price)  { 344.5 }
+    let(:raw_open_order) { double }
+    let(:parsed_open_order) { double }
+
+    before do
+      allow(client).to receive(:post).
+        with("buy", {amount: 0.1, price: 344.5}) { raw_open_order }
+      allow(described_class::OpenOrderParser).
+        to receive(:parse).
+        with(raw_open_order) { parsed_open_order }
+    end
+
+    it "parses result" do
+      should be(parsed_open_order)
     end
   end
 end

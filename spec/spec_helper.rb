@@ -1,18 +1,14 @@
-if ENV["COVERAGE"] == "true"
-  require "simplecov"
-  require "coveralls"
+require "rubygems"
+require "bundler"
+Bundler.setup
 
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-  ]
-
-  SimpleCov.start do
-    add_filter "spec"
-  end
-end
+Dir[File.dirname(__FILE__) + '/support/*.rb'].each {|f| require f}
 
 require "bitbot/trader"
 
 include Bitbot::Trader
-require "devtools/spec_helper"
+
+RSpec.configure do |config|
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+end
